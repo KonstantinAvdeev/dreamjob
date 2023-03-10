@@ -36,7 +36,7 @@
         <form class="mt-3" th:action="@{/candidates/update}" method="post" th:object="${candidate}">
             <input type="hidden" name="id" th:field="*{id}">
             <div class="mb-3">
-                <label for="name" class="form-label"><b>Название</b></label>
+                <label for="name" class="form-label"><b>ФИО</b></label>
                 <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
                        placeholder="Фамилия, имя, отчество.">
             </div>
@@ -44,6 +44,13 @@
                 <label for="description" class="form-label"><b>Описание</b></label>
                 <textarea class="form-control" id="description" name="description" th:field="*{description}" rows="25"
                           placeholder="Опишите свой опыт и навыки"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="city"><b>Город</b></label>
+                <select class="form-control" id="city" name="cityId">
+                    <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}" th:field="*{cityId}"
+                            th:selected="${city.id==cityId}"></option>
+                </select>
             </div>
             <div class="mb-3 row">
                 <div class="col-6"></div>

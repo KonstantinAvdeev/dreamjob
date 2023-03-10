@@ -35,14 +35,20 @@
     <div class="container">
         <form class="mt-3" th:action="@{/candidates/create}" method="post">
             <div class="mb-3">
-                <label for="name" class="form-label"><b>Название</b></label>
+                <label for="name" class="form-label"><b>ФИО</b></label>
                 <input type="text" class="form-control" id="name" name="name"
-                       placeholder="Фамилия, имя, отчество.">
+                       placeholder="Фамилия, имя, отчество">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label"><b>Описание</b></label>
                 <textarea class="form-control" id="description" name="description" rows="25"
                           placeholder="Опишите свой опыт и навыки"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="city"><b>Город</b></label>
+                <select class="form-control" id="city" name="cityId">
+                    <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                </select>
             </div>
             <div class="mb-3 row">
                 <div class="col-6"></div>
