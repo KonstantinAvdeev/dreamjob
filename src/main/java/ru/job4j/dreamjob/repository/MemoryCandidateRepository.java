@@ -20,18 +20,18 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
     public MemoryCandidateRepository() {
-        save(new Candidate(0, "Ivan Petrov", "1.5 years experience",
-                LocalDateTime.now(), 3));
-        save(new Candidate(0, "Sergey Ivanov", "2.5 years experience",
-                LocalDateTime.now(), 2));
-        save(new Candidate(0, "Oleg Lapshin", "5 years experience",
-                LocalDateTime.now(), 2));
-        save(new Candidate(0, "Igor Egorov", "11 years experience",
-                LocalDateTime.now(), 1));
-        save(new Candidate(0, "Marina Leonova", "0.5 years experience",
-                LocalDateTime.now(), 3));
-        save(new Candidate(0, "Maksim Popov", "0 years experience",
-                LocalDateTime.now(), 1));
+        save(new Candidate(0, "Petrov Ivan Sergeevich", "1.5 years experience",
+                LocalDateTime.now(), 3, 0));
+        save(new Candidate(0, "Ivanov Sergey Aleksandrovich", "2.5 years experience",
+                LocalDateTime.now(), 2, 0));
+        save(new Candidate(0, "Lapshin Oleg Petrovich", "5 years experience",
+                LocalDateTime.now(), 2, 0));
+        save(new Candidate(0, "Egorov Igor Alekseevich", "11 years experience",
+                LocalDateTime.now(), 1, 0));
+        save(new Candidate(0, "Leonova Marina Leonidovna", "0.5 years experience",
+                LocalDateTime.now(), 3, 0));
+        save(new Candidate(0, "Popov Maksim Mihailovich", "0 years experience",
+                LocalDateTime.now(), 1, 0));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
     @Override
     public boolean update(Candidate candidate) {
         return candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) -> new Candidate(oldCandidate.getId(), candidate.getName(),
-                candidate.getDescription(), candidate.getCreationDate(), candidate.getCityId())) != null;
+                candidate.getDescription(), candidate.getCreationDate(), candidate.getCityId(), candidate.getFileId())) != null;
     }
 
     @Override
