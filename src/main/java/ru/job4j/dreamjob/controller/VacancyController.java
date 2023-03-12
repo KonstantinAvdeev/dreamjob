@@ -16,6 +16,7 @@ import ru.job4j.dreamjob.service.VacancyService;
 public class VacancyController {
 
     private final VacancyService vacancyService;
+
     private final CityService cityService;
 
     public VacancyController(VacancyService vacancyService, CityService cityService) {
