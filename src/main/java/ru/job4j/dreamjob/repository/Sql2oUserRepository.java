@@ -28,7 +28,7 @@ public class Sql2oUserRepository implements UserRepository {
             user.setId(generatedId);
             return Optional.of(user);
         } catch (Sql2oException exception) {
-            System.out.println("Не удалось сохранить пользователя! Ошибка: " + exception.getMessage());
+            exception.printStackTrace();
             return Optional.empty();
         }
     }
