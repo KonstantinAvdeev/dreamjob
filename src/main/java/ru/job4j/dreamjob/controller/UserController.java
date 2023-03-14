@@ -25,14 +25,12 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistationPage(Model model, HttpSession session) {
-        getSession(model, session);
+    public String getRegistationPage(Model model) {
         return "users/register";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, Model model, HttpSession session) {
-        getSession(model, session);
+    public String register(@ModelAttribute User user, Model model) {
         try {
             userService.save(user);
             return "users/register";
@@ -43,14 +41,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(Model model, HttpSession session) {
-        getSession(model, session);
+    public String getLoginPage(Model model) {
         return "users/login";
     }
 
     @PostMapping("/login")
-    public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request, HttpSession sess) {
-        getSession(model, sess);
+    public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "Почта или пароль введены неверно");
@@ -65,15 +61,6 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/users/login";
-    }
-
-    public void getSession(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
     }
 
 }
