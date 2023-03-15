@@ -1,5 +1,7 @@
 package ru.job4j.dreamjob.repository;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -10,6 +12,8 @@ import java.util.Optional;
 
 @Repository
 public class Sql2oUserRepository implements UserRepository {
+
+    private static final Logger LOG = LogManager.getLogger(Sql2oUserRepository.class.getName());
 
     private final Sql2o sql2o;
 
@@ -28,9 +32,9 @@ public class Sql2oUserRepository implements UserRepository {
             user.setId(generatedId);
             return Optional.of(user);
         } catch (Sql2oException exception) {
-            exception.printStackTrace();
-            return Optional.empty();
+            LOG.error("Can not save user, some exception: ", exception);
         }
+        return Optional.empty();
     }
 
     @Override
