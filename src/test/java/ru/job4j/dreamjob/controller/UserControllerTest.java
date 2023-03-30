@@ -2,7 +2,6 @@ package ru.job4j.dreamjob.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.springframework.ui.ConcurrentModel;
 import org.sql2o.Sql2oException;
 import ru.job4j.dreamjob.model.User;
@@ -38,7 +37,7 @@ class UserControllerTest {
     @Test
     public void whenGetRegistrationPage() {
         var model = new ConcurrentModel();
-        var view = userController.getRegistationPage(model);
+        var view = userController.getRegistrationPage(model);
 
         assertThat(view).isEqualTo("users/register");
     }

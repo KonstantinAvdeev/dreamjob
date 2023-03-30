@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistationPage(Model model) {
+    public String getRegistrationPage(Model model) {
         return "users/register";
     }
 
