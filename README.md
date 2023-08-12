@@ -40,4 +40,4 @@
 ![](files/newresume.png)
 
 **Внутри конкретной вакансии/резюме.**
-![](files/update.png)андидата.
+![](files/update.png)
