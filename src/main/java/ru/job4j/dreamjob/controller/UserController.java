@@ -33,7 +33,8 @@ public class UserController {
     public String register(@ModelAttribute User user, Model model) {
         try {
             userService.save(user);
-            return "users/register";
+            user.setName("Гость");
+            return "users/login";
         } catch (Exception exception) {
             model.addAttribute("message", exception.getMessage());
             return "errors/404";
@@ -48,9 +49,10 @@ public class UserController {
     @PostMapping("/login")
     public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        user.setName("Гость");
         if (userOptional.isEmpty()) {
-            model.addAttribute("error", "Почта или пароль введены неверно");
-            return "users/login";
+            model.addAttribute("message", "Пользователь не найден");
+            return "errors/404";
         }
         var session = request.getSession();
         session.setAttribute("user", userOptional.get());
